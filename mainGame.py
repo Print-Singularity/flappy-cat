@@ -54,34 +54,6 @@ def text_score(text, font, text_col, x, y):
     img = font.render(text, True, text_col)
     screen.blit(img, (x, y))
 
-class Button:
-    def __init__(self, text, x, y, width, height, color, hover_color, action=None):
-        self.text = text
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
-        self.color = color
-        self.hover_color = hover_color
-        self.action = action
-
-    def draw(self, screen):
-        mouse_pos = pygame.mouse.get_pos()
-        clicked = pygame.mouse.get_pressed()[0]
-
-        if self.x < mouse_pos[0] < self.x + self.width and self.y < mouse_pos[1] < self.y + self.height:
-            pygame.draw.rect(screen, self.hover_color, (self.x, self.y, self.width, self.height))
-            if clicked and self.action:
-                self.action()
-        else:
-            pygame.draw.rect(screen, self.color, (self.x, self.y, self.width, self.height))
-
-        font = pygame.font.SysFont(None, 36)
-        text = font.render(self.text, True, BLACK)
-        text_rect = text.get_rect(center=(self.x + self.width / 2, self.y + self.height / 2))
-        screen.blit(text, text_rect)
-
-
 
 # restart_button = Button(score, 600, 50, 150, 50, GREEN, RED)
 
